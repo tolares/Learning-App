@@ -1,0 +1,15 @@
+{
+  "food" :
+  [
+    ["coffee", "café" ],
+    ["bread", "pain" ],
+    ["apple", "pomme" ],
+    ["cheese", "fromage" ]
+  ],
+  "animals" :
+  [
+    ["cat", "chat" ],
+    ["dog", "chien" ],
+    ["monkey", "singe" ]
+  ]
+}
