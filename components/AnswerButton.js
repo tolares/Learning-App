@@ -15,7 +15,7 @@ export default function AnswerButton({name, answer, onPress}) {
         >
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => Alert.alert(answer)}
+                onPress={onPress}
             >
                 <Text style={{textAlign: 'center', lineHeight: 30, fontSize: 20, paddingHorizontal: 10, textTransform: 'capitalize'}}>
                     {name}

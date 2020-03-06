@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import {RectButton, ScrollView} from 'react-native-gesture-handler';
-import {Ionicons} from "@expo/vector-icons";
 
 export default function HomeScreen({navigation}) {
   return (
@@ -75,7 +74,7 @@ export default function HomeScreen({navigation}) {
 }
 function TypeButton({ image, label,url, type,navigation,count }) {
   return (
-      <TouchableOpacity onPress={() => navigation.navigate(url, {type : type})}>
+      <TouchableOpacity onPress={() => navigation.navigate(url, {type : type, count: count})}>
         <View style={{ height: 90, flex: 1,flexDirection: 'row' }}>
           <Image
               style={styles.icon}

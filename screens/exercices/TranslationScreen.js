@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button} from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
 import AnswerButton from '../../components/AnswerButton';
 import {ScrollView} from "react-native-gesture-handler";
 import {Alert} from "react-native-web";
@@ -9,7 +8,7 @@ import data from '../../assets/data/words.json';
 
 export default function TranslationScreen({route, navigation}) {
     const { type } = route.params;
-    var { count } = route.params
+    var { count } = route.params;
     var words;
     switch (type) {
         case 1 :
@@ -19,22 +18,12 @@ export default function TranslationScreen({route, navigation}) {
             words = shuffle(data.animals);
             break;
     }
-    const [value, setValue] = useState('value');
-    const { getItem, setItem } = useAsyncStorage('@storage_key');
-
-    const readItemFromStorage = async () => {
-        const item = await getItem();
-        setValue(item);
-    };
-    useEffect(() => {
-        readItemFromStorage();
-    }, []);
     return (
-        <View style={styles.container}>
+            <View style={styles.container}>
             <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
                 <View>
                     <Text style={{textAlign: 'center', fontSize: 18, color: 'grey'}}>Choose the correct
-                        translation</Text>
+                        translation {count}</Text>
                 </View>
                 <ScrollView style={{marginTop: 60}}>
                     <Text style={{textAlign: 'center', fontSize: 25, textTransform: 'capitalize'}}>
@@ -45,23 +34,27 @@ export default function TranslationScreen({route, navigation}) {
                     </Text>
                     <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', alignContent: 'space-around'}}>
                         <Randomize
-                        data={Rand(words, 3, words[0])}
-                        word={words[0]}
+                            data={Rand(words, 3, words[0])}
+                            word={words[0]}
+                            navigation={navigation}
+                            type={type}
+                            count={count}
                         />
                     </View>
                 </ScrollView>
             </ScrollView>
 
-        </View>
-    );
+        </View>);
 }
 
-function Randomize({data, word}){
+function Randomize({data, word, navigation, type, count}){
     data = shuffle(data);
+    count = count +1;
+    var onPress;
     return(
         data.map(function (item) {
             return (
-                <AnswerButton name={item[1]} answer={(word == item)? 'true' : 'false'} />
+                <AnswerButton name={item[1]} onPress={(word == item)? () => navigation.navigate('Translation', {type : type, count : count}) : () => Alert.alert('false')} />
             );}
             )
     )
