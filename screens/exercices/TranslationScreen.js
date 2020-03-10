@@ -5,6 +5,8 @@ import {ScrollView} from "react-native-gesture-handler";
 import {Alert} from "react-native-web";
 import {LinearGradient} from 'expo-linear-gradient';
 import data from '../../assets/data/words.json';
+import ReturnButton from "../../components/ReturnButton";
+
 
 export default function TranslationScreen({route, navigation}) {
     const { type } = route.params;
@@ -19,7 +21,23 @@ export default function TranslationScreen({route, navigation}) {
             break;
     }
     return (
-            <View style={styles.container}>
+        <RenderExercice count={count} words={words} navigation={navigation} type={type} />
+    );
+}
+function RenderExercice({count, words, navigation, type}){
+    if(count === 3){
+        return(<View style={styles.container}>
+            <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+                <View>
+                    <ReturnButton name={'Return to the Home Page'} url={'Home'} navigation={navigation} food={count}/>
+
+                </View>
+
+            </ScrollView>
+
+        </View>);
+    }else{
+        return (<View style={styles.container}>
             <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
                 <View>
                     <Text style={{textAlign: 'center', fontSize: 18, color: 'grey'}}>Choose the correct
@@ -34,20 +52,20 @@ export default function TranslationScreen({route, navigation}) {
                     </Text>
                     <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', alignContent: 'space-around'}}>
                         <Randomize
-                            data={Rand(words, 3, words[0])}
+                            data={words}
                             word={words[0]}
                             navigation={navigation}
-                            type={type}
                             count={count}
+                            type={type}
                         />
                     </View>
                 </ScrollView>
             </ScrollView>
 
-        </View>);
+        </View>)
+    }
 }
-
-function Randomize({data, word, navigation, type, count}){
+function Randomize({data, word, navigation, count, type}){
     data = shuffle(data);
     count = count +1;
     var onPress;

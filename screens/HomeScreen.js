@@ -2,19 +2,21 @@ import * as React from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import {RectButton, ScrollView} from 'react-native-gesture-handler';
 
-export default function HomeScreen({navigation}) {
+export default function HomeScreen({navigation, food}){
+
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
         <View style={{flex: 1, flexDirection: 'row'}}>
-         <Text style={{fontSize: 30, fontWeight: 'bold', marginLeft: 20}}>English</Text>
+         <Text style={{fontSize: 30, fontWeight: 'bold', marginLeft: 20}}>English {food}</Text>
           <Text style={{position: 'absolute', right: 20, marginTop: 10, fontSize: 16}}>Level 1</Text>
         </View>
         <View style={{ flex: 1, flexDirection: 'column'}}>
           <TypeButton
           image={require('../assets/images/icons/food.png')}
           type={1}
-          count={0}
+          count={(food === undefined) ? 0 : food}
           url='Translation'
           label='Food'
           navigation={navigation}
@@ -86,6 +88,7 @@ function TypeButton({ image, label,url, type,navigation,count }) {
       </TouchableOpacity>
   );
 }
+
 HomeScreen.navigationOptions = {
   header: null,
 };
