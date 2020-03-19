@@ -11,5 +11,9 @@
     ["cat", "chat" ],
     ["dog", "chien" ],
     ["monkey", "singe" ]
+  ],
+  "sentence" :
+  [
+    ["Do you like ..... ? ", ["banana", "cake"]]
   ]
 }

@@ -1,0 +1,12 @@
+{
+  "user" :
+  {
+    "name" : "John",
+    "lastName" : "Doe",
+    "score" :
+    [
+      ["food", 2],
+      ["animals", 0]
+    ]
+  }
+}

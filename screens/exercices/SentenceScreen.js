@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button} from 'react-native';
+import {Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button, TextInput} from 'react-native';
 import AnswerButton from '../../components/AnswerButton';
 import {ScrollView} from "react-native-gesture-handler";
 import {Alert} from "react-native-web";
@@ -8,42 +8,25 @@ import data from '../../assets/data/words.json';
 import ReturnButton from "../../components/ReturnButton";
 
 
-export default function TranslationScreen({route, navigation}) {
+export default function SentenceScreen({route, navigation}) {
     const { type } = route.params;
     var { count } = route.params;
-    var words;
-    switch (type) {
-        case 1 :
-            words = shuffle(data.food);
-            break;
-        case 2 :
-            words = shuffle(data.animals);
-            break;
-    }
+    var array = shuffle(data.sentence);
+    var sentence = array[0][0];
+    var word = array[0][1];
+
     return (
-        <RenderExercice count={count} words={words} navigation={navigation} type={type} />
+        <RenderExercice count={count} word={word} navigation={navigation} sentence={sentence} type={type} />
     );
 }
-function RenderExercice({count, words, navigation, type}){
-    if(count === 3){
+function RenderExercice({count, word, navigation, type, sentence}){
+    const [value, onChangeText] = React.useState('banana');
+
+    if(count === 6){
         return(<View style={styles.container}>
             <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
                 <View>
-                    <LinearGradient
-                        colors={['#78B5FA', '#9586FD']}
-                        start={[0, 0]}
-                        end={[1, 0]}
-                        style={{borderRadius: 10, marginTop: 20, marginHorizontal: 10}}
-                    >
-                        <TouchableOpacity
-                            style={styles.button}
-                            onPress={() => navigation.navigate('Sentence', {type : type, count: count})}
-                        >
-                            <Text style={{textAlign: 'center', lineHeight: 30, fontSize: 20, paddingHorizontal: 10, textTransform: 'capitalize'}}>
-                                {name} {food}
-                            </Text>
-                        </TouchableOpacity>
-                    </LinearGradient>
+                    <ReturnButton name={'Return to the Home Page'} url={'Home'} navigation={navigation} food={count}/>
                 </View>
 
             </ScrollView>
@@ -53,24 +36,22 @@ function RenderExercice({count, words, navigation, type}){
         return (<View style={styles.container}>
             <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
                 <View>
-                    <Text style={{textAlign: 'center', fontSize: 18, color: 'grey'}}>Choose the correct
-                        translation {count}</Text>
+                    <Text style={{textAlign: 'center', fontSize: 18, color: 'grey'}}>Insert the correct
+                         {count}</Text>
                 </View>
                 <ScrollView style={{marginTop: 60}}>
                     <Text style={{textAlign: 'center', fontSize: 25, textTransform: 'capitalize'}}>
-                        {words[0][0]}
-                    </Text>
-                    <Text style={{textAlign: 'center', fontSize: 20, color: 'grey', marginTop: 10}}>
-                        in French
+                        {sentence}
                     </Text>
                     <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', alignContent: 'space-around'}}>
-                        <Randomize
-                            data={words}
-                            word={words[0]}
-                            navigation={navigation}
-                            count={count}
-                            type={type}
+                        <TextInput
+                            style={{ height: 40, width: 200, borderColor: 'gray', borderWidth: 1 }}
+                            onChangeText={text => onChangeText(text)}
+                            value={value}
                         />
+                    </View>
+                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', alignContent: 'space-around'}}>
+                        <AnswerButton name="Check your answer" onPress={(word.indexOf(value.toLowerCase()) > -1)? () => navigation.navigate('Sentence', {type : type, count : count + 1}) : () => Alert.alert('False')} />
                     </View>
                 </ScrollView>
             </ScrollView>
@@ -87,7 +68,7 @@ function Randomize({data, word, navigation, count, type}){
             return (
                 <AnswerButton name={item[1]} onPress={(word == item)? () => navigation.navigate('Translation', {type : type, count : count}) : () => Alert.alert('false')} />
             );}
-            )
+        )
     )
 }
 function shuffle(arr) {
@@ -117,7 +98,7 @@ function Rand(arr, n, word){
     return result;
 
 }
-TranslationScreen.navigationOptions = {
+SentenceScreen.navigationOptions = {
     title: "Excercices",
 };
 

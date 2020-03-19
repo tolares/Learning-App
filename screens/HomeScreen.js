@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import {RectButton, ScrollView} from 'react-native-gesture-handler';
+import data from '../assets/data/data.json';
 
 export default function HomeScreen({navigation, food}){
 
-
+  var score = data.user.score;
   return (
     <View style={styles.container}>
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
@@ -16,7 +17,7 @@ export default function HomeScreen({navigation, food}){
           <TypeButton
           image={require('../assets/images/icons/food.png')}
           type={1}
-          count={(food === undefined) ? 0 : food}
+          count={score[0][1]}
           url='Translation'
           label='Food'
           navigation={navigation}
@@ -83,7 +84,7 @@ function TypeButton({ image, label,url, type,navigation,count }) {
               source={image}
           />
           <Text style={{marginTop: 37, fontSize: 16, marginLeft: 20}}>{label}</Text>
-          <Text style={{marginTop: 37, fontSize: 16, position: 'absolute', right:30}} >{count}/3</Text>
+          <Text style={{marginTop: 37, fontSize: 16, position: 'absolute', right:30}} >{count}/6</Text>
         </View>
       </TouchableOpacity>
   );
