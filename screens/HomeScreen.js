@@ -77,7 +77,7 @@ export default function HomeScreen({navigation, food}){
 }
 function TypeButton({ image, label,url, type,navigation,count }) {
   return (
-      <TouchableOpacity onPress={() => navigation.navigate(url, {type : type, count: count})}>
+      <TouchableOpacity key={type} onPress={() => navigation.navigate(url, {type : type, count: count})}>
         <View style={{ height: 90, flex: 1,flexDirection: 'row' }}>
           <Image
               style={styles.icon}

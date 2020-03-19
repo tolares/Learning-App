@@ -20,7 +20,7 @@ export default function SentenceScreen({route, navigation}) {
     );
 }
 function RenderExercice({count, word, navigation, type, sentence}){
-    const [value, onChangeText] = React.useState('banana');
+    const [value, onChangeText] = React.useState('');
 
     if(count === 6){
         return(<View style={styles.container}>
@@ -62,11 +62,12 @@ function RenderExercice({count, word, navigation, type, sentence}){
 function Randomize({data, word, navigation, count, type}){
     data = shuffle(data);
     count = count +1;
-    var onPress;
+    var i =-1;
     return(
         data.map(function (item) {
+            i++;
             return (
-                <AnswerButton name={item[1]} onPress={(word == item)? () => navigation.navigate('Translation', {type : type, count : count}) : () => Alert.alert('false')} />
+                <AnswerButton key={i} name={item[1]} onPress={(word == item)? () => navigation.navigate('Translation', {type : type, count : count}) : () => Alert.alert('false')} />
             );}
         )
     )

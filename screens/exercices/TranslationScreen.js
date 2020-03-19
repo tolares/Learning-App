@@ -21,12 +21,13 @@ export default function TranslationScreen({route, navigation}) {
             break;
     }
     return (
-        <RenderExercice count={count} words={words} navigation={navigation} type={type} />
+        <RenderExercice count={count} words={words} navigation={navigation} type={type}  />
     );
 }
 function RenderExercice({count, words, navigation, type}){
     if(count === 3){
-        return(<View style={styles.container}>
+        return(
+            <View style={styles.container}>
             <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
                 <View>
                     <LinearGradient
@@ -40,7 +41,7 @@ function RenderExercice({count, words, navigation, type}){
                             onPress={() => navigation.navigate('Sentence', {type : type, count: count})}
                         >
                             <Text style={{textAlign: 'center', lineHeight: 30, fontSize: 20, paddingHorizontal: 10, textTransform: 'capitalize'}}>
-                                {name} {food}
+                                {"Next Exercice !"}
                             </Text>
                         </TouchableOpacity>
                     </LinearGradient>
@@ -63,9 +64,9 @@ function RenderExercice({count, words, navigation, type}){
                     <Text style={{textAlign: 'center', fontSize: 20, color: 'grey', marginTop: 10}}>
                         in French
                     </Text>
-                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', alignContent: 'space-around'}}>
+                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', height: 100}}>
                         <Randomize
-                            data={words}
+                            data={words.slice(0, 3)}
                             word={words[0]}
                             navigation={navigation}
                             count={count}
@@ -81,11 +82,13 @@ function RenderExercice({count, words, navigation, type}){
 function Randomize({data, word, navigation, count, type}){
     data = shuffle(data);
     count = count +1;
-    var onPress;
+    var i = -1;
     return(
         data.map(function (item) {
+            i++;
             return (
-                <AnswerButton name={item[1]} onPress={(word == item)? () => navigation.navigate('Translation', {type : type, count : count}) : () => Alert.alert('false')} />
+                    <AnswerButton name={item[1]} onPress={(word == item)? () => navigation.navigate('Translation', {type : type, count : count}) : () => Alert.alert('false')} />
+
             );}
             )
     )
