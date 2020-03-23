@@ -87,7 +87,10 @@ function Randomize({data, word, navigation, count, type}){
         data.map(function (item) {
             i++;
             return (
-                    <AnswerButton name={item[1]} onPress={(word == item)? () => navigation.navigate('Translation', {type : type, count : count}) : () => Alert.alert('false')} />
+                    <AnswerButton key={i} name={item[1]} onPress={(word == item)? (() => navigation.navigate('Translation', {type : type, count : count})) : (() => Alert.alert(
+                        'False',
+                        {cancelable: false},
+                    ))} />
 
             );}
             )

@@ -21,6 +21,7 @@ export default function HomeScreen({navigation, food}){
           url='Translation'
           label='Food'
           navigation={navigation}
+          disable={false}
           />
           <TypeButton
               image={require('../assets/images/icons/animals.png')}
@@ -29,14 +30,16 @@ export default function HomeScreen({navigation, food}){
               url='Translation'
               label='Animals'
               navigation={navigation}
+              disable={false}
           />
           <TypeButton
               image={require('../assets/images/icons/abstract.png')}
               type={3}
               count={0}
               url='Translation'
-              label='Abstract objects'
+              label='Final test'
               navigation={navigation}
+              disable={true}
           />
           <TypeButton
               image={require('../assets/images/icons/science.png')}
@@ -45,6 +48,7 @@ export default function HomeScreen({navigation, food}){
               url='Translation'
               label='Science'
               navigation={navigation}
+              disable={false}
           />
           <TypeButton
               image={require('../assets/images/icons/chat.png')}
@@ -53,6 +57,7 @@ export default function HomeScreen({navigation, food}){
               url='Translation'
               label='Conversation'
               navigation={navigation}
+              disable={false}
           />
           <TypeButton
               image={require('../assets/images/icons/art.png')}
@@ -61,6 +66,7 @@ export default function HomeScreen({navigation, food}){
               url='Translation'
               label='Colors'
               navigation={navigation}
+              disable={false}
           />
           <TypeButton
               image={require('../assets/images/icons/up.png')}
@@ -69,15 +75,16 @@ export default function HomeScreen({navigation, food}){
               url='Translation'
               label='Economics'
               navigation={navigation}
+              disable={false}
           />
         </View>
       </ScrollView>
     </View>
   );
 }
-function TypeButton({ image, label,url, type,navigation,count }) {
+function TypeButton({ image, label,url, type,navigation,count, disable}) {
   return (
-      <TouchableOpacity key={type} onPress={() => navigation.navigate(url, {type : type, count: count})}>
+      <TouchableOpacity key={type} onPress={() => navigation.navigate(url, {type : type, count: count})} disable={disable}>
         <View style={{ height: 90, flex: 1,flexDirection: 'row' }}>
           <Image
               style={styles.icon}
