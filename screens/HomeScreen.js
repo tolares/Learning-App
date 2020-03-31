@@ -27,7 +27,7 @@ export default function HomeScreen({navigation, food}){
               image={require('../assets/images/icons/animals.png')}
               type={2}
               count={0}
-              url='Translation'
+              url='List'
               label='Animals'
               navigation={navigation}
               disable={false}
@@ -45,7 +45,7 @@ export default function HomeScreen({navigation, food}){
               image={require('../assets/images/icons/science.png')}
               type={4}
               count={0}
-              url='Translation'
+              url='List'
               label='Science'
               navigation={navigation}
               disable={false}

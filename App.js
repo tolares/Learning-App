@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import BottomTabNavigator from './navigation/BottomTabNavigator';
+import CompareScreen from './screens/exercices/CompareScreen';
 import useLinking from './navigation/useLinking';
 import TranslationScreen from './screens/exercices/TranslationScreen';
 import SentenceScreen from './screens/exercices/SentenceScreen';
@@ -54,6 +55,7 @@ export default function App(props) {
         <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
           <Stack.Navigator>
             <Stack.Screen name="Root" component={BottomTabNavigator} />
+            <Stack.Screen name="List" component={CompareScreen} />
             <Stack.Screen name="Translation" component={TranslationScreen} />
             <Stack.Screen name="Sentence" component={SentenceScreen} />
           </Stack.Navigator>
