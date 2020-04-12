@@ -20,7 +20,7 @@ export default function AboutScreen() {
             <OptionButton
                 icon="logo-github"
                 label="HAJJAR Khaled"
-                onPress={() => WebBrowser.openBrowserAsync('https://reactnavigation.org')}
+                onPress={() => WebBrowser.openBrowserAsync('https://github.com/khalou-314')}
             />
             <OptionButton
                 icon="logo-github"
