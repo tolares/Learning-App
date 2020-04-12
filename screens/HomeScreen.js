@@ -63,7 +63,7 @@ export default function HomeScreen({navigation, food}){
               image={require('../assets/images/icons/art.png')}
               type={6}
               count={0}
-              url='Translation'
+              url='List'
               label='Colors'
               navigation={navigation}
               disable={false}
@@ -72,7 +72,7 @@ export default function HomeScreen({navigation, food}){
               image={require('../assets/images/icons/up.png')}
               type={7}
               count={0}
-              url='Translation'
+              url='List'
               label='Economics'
               navigation={navigation}
               disable={false}

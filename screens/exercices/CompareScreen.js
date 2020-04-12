@@ -19,6 +19,15 @@ export default function CompareScreen({route, navigation}) {
         case 2 :
             words = shuffle(data.animals);
             break;
+        case 4 :
+            words = shuffle(data.science);
+            break;
+        case 6 :
+            words = shuffle(data.colors);
+            break;
+        case 7 :
+            words = shuffle(data.economics);
+            break;
     }
     return (
         <RenderExercice count={count} words={words} navigation={navigation} type={type}  />
