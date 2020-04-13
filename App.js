@@ -7,7 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import BottomTabNavigator from './navigation/BottomTabNavigator';
-import CompareScreen from './screens/exercices/CompareScreen';
+
 import useLinking from './navigation/useLinking';
 import TranslationScreen from './screens/exercices/TranslationScreen';
 import SentenceScreen from './screens/exercices/SentenceScreen';
