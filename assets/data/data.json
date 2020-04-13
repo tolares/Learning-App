@@ -5,7 +5,7 @@
     "lastName" : "Doe",
     "score" :
     [
-      ["food", 2],
+      ["food", 5],
       ["animals", 0]
     ]
   }

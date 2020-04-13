@@ -18,7 +18,7 @@ export default function HomeScreen({navigation, food}){
           image={require('../assets/images/icons/food.png')}
           type={1}
           count={score[0][1]}
-          url='Translation'
+          url='Sentence'
           label='Food'
           navigation={navigation}
           disable={false}
@@ -91,7 +91,7 @@ function TypeButton({ image, label,url, type,navigation,count, disable}) {
               source={image}
           />
           <Text style={{marginTop: 37, fontSize: 16, marginLeft: 20}}>{label}</Text>
-          <Text style={{marginTop: 37, fontSize: 16, position: 'absolute', right:30}} >{count}/6</Text>
+          <Text style={{marginTop: 37, fontSize: 16, position: 'absolute', right:30}} >{count}/9</Text>
         </View>
       </TouchableOpacity>
   );

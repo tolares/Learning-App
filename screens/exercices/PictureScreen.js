@@ -8,39 +8,88 @@ import data from '../../assets/data/words.json';
 import ReturnButton from "../../components/ReturnButton";
 
 
-export default function SentenceScreen({route, navigation}) {
+export default function PictureScreen({route, navigation}) {
     const { type } = route.params;
     var { count } = route.params;
-    var array = shuffle(data.sentence);
-    var sentence = array[0][0];
+    var array = shuffle(data["exercice-photos"]);
+    var img;
     var word = array[0][1];
+    switch (word) {
+        case 'bear':
+            img = require('../../assets/images/exercice/bear.png');
+            break;
+        case 'bee':
+            img = require('../../assets/images/exercice/bee.png');
+            break;
+        case 'bird':
+            img = require('../../assets/images/exercice/bird.png');
+            break;
+        case 'bull':
+            img = require('../../assets/images/exercice/bull.png');
+            break;
+        case 'cat':
+            img = require('../../assets/images/exercice/cat.png');
+            break;
+        case 'chicken':
+            img = require('../../assets/images/exercice/chicken.png');
+            break;
+        case 'dog':
+            img = require('../../assets/images/exercice/dog.png');
+            break;
+        case 'fly':
+            img = require('../../assets/images/exercice/fly.png');
+            break;
+        case 'giraffe':
+            img = require('../../assets/images/exercice/giraffe.png');
+            break;
+        case 'gorilla':
+            img = require('../../assets/images/exercice/gorilla.png');
+            break;
+        case 'horse':
+            img = require('../../assets/images/exercice/horse.png');
+            break;
+        case 'lion':
+            img = require('../../assets/images/exercice/lion.png');
+            break;
+        case 'monkey':
+            img = require('../../assets/images/exercice/monkey.png');
+            break;
+        case 'pangolin':
+            img = require('../../assets/images/exercice/pangolin.png');
+            break;
+        case 'rabbit':
+            img = require('../../assets/images/exercice/rabbit.png');
+            break;
+        case 'shark':
+            img = require('../../assets/images/exercice/shark.png');
+            break;
+        case 'snake':
+            img = require('../../assets/images/exercice/snake.png');
+            break;
+        case 'spider':
+            img = require('../../assets/images/exercice/spider.png');
+            break;
+        case 'whale':
+            img = require('../../assets/images/exercice/whale.png');
+            break;
+        case 'wolf':
+            img = require('../../assets/images/exercice/wolf.png');
+            break;
+
+    }
 
     return (
-        <RenderExercice count={count} word={word} navigation={navigation} sentence={sentence} type={type} />
+        <RenderExercice count={count} word={word} navigation={navigation} type={type} img={img} />
     );
 }
-function RenderExercice({count, word, navigation, type, sentence}){
+function RenderExercice({count, word, navigation, type, img}){
     const [value, onChangeText] = React.useState('');
 
-    if(count === 6){
+    if(count === 9){
         return(<View style={styles.container}>
             <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
                 <View>
-                    <LinearGradient
-                        colors={['#78B5FA', '#9586FD']}
-                        start={[0, 0]}
-                        end={[1, 0]}
-                        style={{borderRadius: 10, marginTop: 20, marginHorizontal: 10}}
-                    >
-                        <TouchableOpacity
-                            style={styles.button}
-                            onPress={() => navigation.navigate('Picture', {type : type, count: count})}
-                        >
-                            <Text style={{textAlign: 'center', lineHeight: 30, fontSize: 20, paddingHorizontal: 10, textTransform: 'capitalize'}}>
-                                {"Next Exercice !"}
-                            </Text>
-                        </TouchableOpacity>
-                    </LinearGradient>
+                    <ReturnButton name={'Return to the Home Page'} url={'Home'} navigation={navigation} food={count}/>
                 </View>
 
             </ScrollView>
@@ -50,13 +99,14 @@ function RenderExercice({count, word, navigation, type, sentence}){
         return (<View style={styles.container}>
             <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
                 <View>
-                    <Text style={{textAlign: 'center', fontSize: 18, color: 'grey'}}>Insert the correct
+                    <Text style={{textAlign: 'center', fontSize: 18, color: 'grey'}}>Insert the correct {word}
                          {count}</Text>
                 </View>
                 <ScrollView style={{marginTop: 60}}>
-                    <Text style={{textAlign: 'center', fontSize: 25, textTransform: 'capitalize'}}>
-                        {sentence}
-                    </Text>
+                    <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', flexWrap: 'no-wrap', flex: 1}}>
+                        <Image source={img}
+                               style={{height: 100, width: 200}} />
+                    </View>
                     <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', alignContent: 'space-around'}}>
                         <TextInput
                             style={{ height: 40, width: 200, borderColor: 'gray', borderWidth: 1 }}
@@ -65,7 +115,7 @@ function RenderExercice({count, word, navigation, type, sentence}){
                         />
                     </View>
                     <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', alignContent: 'space-around'}}>
-                        <AnswerButton name="Check your answer" onPress={(word.indexOf(value.toLowerCase()) > -1)? () => navigation.navigate('Sentence', {type : type, count : count + 1}) : () => Alert.alert('False')} />
+                        <AnswerButton name="Check your answer" onPress={(word === value.toLowerCase())? () => navigation.navigate('Picture', {type : type, count : count + 1}) : () => Alert.alert('False')} />
                     </View>
                 </ScrollView>
             </ScrollView>
@@ -113,7 +163,7 @@ function Rand(arr, n, word){
     return result;
 
 }
-SentenceScreen.navigationOptions = {
+PictureScreen.navigationOptions = {
     title: "Excercices",
 };
 

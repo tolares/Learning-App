@@ -12,6 +12,7 @@ import useLinking from './navigation/useLinking';
 import TranslationScreen from './screens/exercices/TranslationScreen';
 import SentenceScreen from './screens/exercices/SentenceScreen';
 import WordsScreen from "./screens/WordsScreen";
+import PictureScreen from "./screens/exercices/PictureScreen";
 
 const Stack = createStackNavigator();
 
@@ -57,6 +58,7 @@ export default function App(props) {
           <Stack.Navigator>
             <Stack.Screen name="Root" component={BottomTabNavigator} />
             <Stack.Screen name="Words" component={WordsScreen} />
+            <Stack.Screen name="Picture" component={PictureScreen} />
             <Stack.Screen name="Translation" component={TranslationScreen} />
             <Stack.Screen name="Sentence" component={SentenceScreen} />
           </Stack.Navigator>
