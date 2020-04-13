@@ -247,5 +247,28 @@
     ["what time is ..... ? ", ["our meeting", "it"]],
     ["I really ..... ? ", ["appreciate it", "want to know it","like it","love it"]],
     ["I owe you ..... ? ", ["one", "everything"]]
-  ]
+  ],
+  "exercice-photos" :
+          [
+            ["bear.png","bear"],
+            ["bee.png","bee"],
+            ["bird.png","bird"],
+            ["bull.png","bull"],
+            ["cat.png","cat"],
+            ["chicken.png","chicken"],
+            ["dog.png","dog"],
+            ["fly.png","fly"],
+            ["giraffe.png","giraffe"],
+            ["gorilla.png","gorilla"],
+            ["horse.png","horse"],
+            ["lion.png","lion"],
+            ["monkey.png","monkey"],
+            ["pangolin.png","pangolin"],
+            ["rabbit.png","rabbit"],
+            ["shark.png","shark"],
+            ["snake.png","snake"],
+            ["spider.png","spider"],
+            ["whale.png","whale"],
+            ["wolf.png","wolf"]
+          ]
 }
