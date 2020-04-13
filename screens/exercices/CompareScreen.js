@@ -19,15 +19,6 @@ export default function CompareScreen({route, navigation}) {
         case 2 :
             words = shuffle(data.animals);
             break;
-        case 4 :
-            words = shuffle(data.science);
-            break;
-        case 6 :
-            words = shuffle(data.colors);
-            break;
-        case 7 :
-            words = shuffle(data.economics);
-            break;
     }
     return (
         <RenderExercice count={count} words={words} navigation={navigation} type={type}  />
@@ -89,36 +80,15 @@ function RenderExercice({count, words, navigation, type}){
                         in French
                     </Text>
                     <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', height: 100}}>
-                    <Randomize2
-                        data={words.slice(0,10)}
-                        navigation={navigation}
-                        count={count}
-                        type={type}
-                    />
+                       <f>
+                           data={words.slice(0,10)}
+                       </f>
                     </View>
                 </ScrollView>
             </ScrollView>
 
         </View>)
     }
-}
-
-function Randomize2({data, navigation, count, type}){
-    data = shuffle(data);
-    count = count +1;
-    var i = -1;
-    return(
-        data.map(function (item) {
-            i++;
-            return (
-                    <AnswerButton key={i} name={item[0]} onPress={(item[1] == item)? (() => navigation.navigate('List', {type : type, count : count})) : (() => Alert.alert(
-                        'False',
-                        {cancelable: false},
-                    ))} />
-
-            );}
-            )
-    )
 }
 
 function Randomize({data, word, navigation, count, type}){
@@ -129,7 +99,7 @@ function Randomize({data, word, navigation, count, type}){
         data.map(function (item) {
             i++;
             return (
-                    <AnswerButton key={i} name={item[1]} onPress={(item[0] == item)? (() => navigation.navigate('List', {type : type, count : count})) : (() => Alert.alert(
+                    <AnswerButton key={i} name={item[1]} onPress={(item[1]== item)? (() => navigation.navigate('List', {type : type, count : count})) : (() => Alert.alert(
                         'False',
                         {cancelable: false},
                     ))} />
@@ -172,11 +142,11 @@ CompareScreen.navigationOptions = {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#f5f5dc',
     },
     developmentModeText: {
         marginBottom: 20,
-        color: 'rgba(0,0,0,0.4)',
+        color : 'rgba(96,100,109, 1)',
         fontSize: 14,
         lineHeight: 19,
         textAlign: 'center',
@@ -202,6 +172,7 @@ const styles = StyleSheet.create({
     },
     homeScreenFilename: {
         marginVertical: 7,
+        textAlign : "center",
     },
     codeHighlightText: {
         color: 'rgba(96,100,109, 0.8)',
@@ -234,7 +205,7 @@ const styles = StyleSheet.create({
             },
         }),
         alignItems: 'center',
-        backgroundColor: '#fbfbfb',
+        backgroundColor: '#4378fb',
         paddingVertical: 20,
     },
     tabBarInfoText: {
