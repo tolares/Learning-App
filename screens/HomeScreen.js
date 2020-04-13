@@ -36,7 +36,7 @@ export default function HomeScreen({navigation, food}){
               image={require('../assets/images/icons/abstract.png')}
               type={3}
               count={0}
-              url='Translation'
+              url='Sentence'
               label='Final test'
               navigation={navigation}
               disable={true}
