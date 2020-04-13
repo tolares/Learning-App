@@ -8,7 +8,11 @@ import UserScreen from "../screens/profile/index";
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
+export const navigationRef = React.createRef();
 
+export function navigate(name, params) {
+    navigationRef.current?.navigate(name, params);
+}
 export default function BottomTabNavigator({ navigation, route }) {
   // Set the header title on the parent stack navigator depending on the
   // currently active tab. Learn more in the documentation:
@@ -60,8 +64,8 @@ function getHeaderTitle(route) {
   switch (routeName) {
     case 'Home':
       return 'Learn English';
-    case 'Links':
-      return 'Links to learn more';
+    case 'Chatbox':
+      return 'List of words';
       case 'User':
           return 'Profile'
   }

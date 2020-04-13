@@ -1,75 +1,67 @@
 import * as React from 'react';
-import {Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button, TextInput, Alert} from 'react-native';
-import AnswerButton from '../../components/AnswerButton';
+import {Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button, Alert} from 'react-native';
 import {ScrollView} from "react-native-gesture-handler";
 import {LinearGradient} from 'expo-linear-gradient';
-import data from '../../assets/data/words.json';
-import ReturnButton from "../../components/ReturnButton";
+import data from '../assets/data/words.json';
 
 
-export default function CompareScreen({route, navigation}) {
+export default function WordsScreen({route, navigation}) {
     const { type } = route.params;
     var { count } = route.params;
-<<<<<<< HEAD
     var words;
     switch (type) {
         case 1 :
-            words = shuffle(data.food);
+            words = (data.food);
             break;
         case 2 :
-            words = shuffle(data.animals);
+            words = (data.animals);
             break;
     }
-=======
-    var array = shuffle(data.sentence);
-    var sentence = array[0][0];
-    var word = array[0][1];
-
->>>>>>> e555d67358c34d76c55d1456500859417023035d
     return (
-        <RenderExercice count={count} word={word} navigation={navigation} sentence={sentence} type={type} />
+        <RenderExercice count={count} words={words} navigation={navigation} type={type}  />
     );
 }
-function RenderExercice({count, word, navigation, type, sentence}){
-    const [value, onChangeText] = React.useState('');
+function RenderExercice({count, words, navigation, type}){
+    if(count === 3){
+        return(
+            <View style={styles.container}>
+                <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+                    <View>
+                        <LinearGradient
+                            colors={['#78B5FA', '#9586FD']}
+                            start={[0, 0]}
+                            end={[1, 0]}
+                            style={{borderRadius: 10, marginTop: 20, marginHorizontal: 10}}
+                        >
+                            <TouchableOpacity
+                                style={styles.button}
+                                onPress={() => navigation.navigate('Sentence', {type : type, count: count})}
+                            >
+                                <Text style={{textAlign: 'center', lineHeight: 30, fontSize: 20, paddingHorizontal: 10, textTransform: 'capitalize'}}>
+                                    {"Next Exercice !"}
+                                </Text>
+                            </TouchableOpacity>
+                        </LinearGradient>
+                    </View>
 
-    if(count === 6){
-        return(<View style={styles.container}>
-            <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-                <View>
-                    <ReturnButton name={'Return to the Home Page'} url={'Home'} navigation={navigation} food={count}/>
-                </View>
+                </ScrollView>
 
-            </ScrollView>
-
-        </View>);
+            </View>);
     }else{
         return (<View style={styles.container}>
             <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
                 <View>
-                    <Text style={{textAlign: 'center', fontSize: 18, color: 'grey'}}>Insert the correct
-                        {count}</Text>
+                    <Text style={{textAlign: 'center', fontSize: 18, color: 'grey'}}>List of vocabulary</Text>
                 </View>
                 <ScrollView style={{marginTop: 60}}>
-                    <Text style={{textAlign: 'center', fontSize: 25, textTransform: 'capitalize'}}>
-                        {sentence}
-                    </Text>
-<<<<<<< HEAD
-                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', height: 100}}>
-                       <f>
-                           data={words.slice(0,10)}
-                       </f>
-=======
-                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', alignContent: 'space-around'}}>
-                        <TextInput
-                            style={{ height: 40, width: 200, borderColor: 'gray', borderWidth: 1 }}
-                            onChangeText={text => onChangeText(text)}
-                            value={value}
+                    <View style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'center', flexWrap: 'no-wrap'}}>
+                        <Show
+                            data={words}
+                            word={words[0]}
+                            navigation={navigation}
+                            count={count}
+                            type={type}
                         />
-                    </View>
-                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', alignContent: 'space-around'}}>
-                        <AnswerButton name="Check your answer" onPress={(word == value.toLowerCase())? () => navigation.navigate('Sentence', {type : type, count : count + 1}) : () => Alert.alert('False')} />
->>>>>>> e555d67358c34d76c55d1456500859417023035d
                     </View>
                 </ScrollView>
             </ScrollView>
@@ -77,27 +69,14 @@ function RenderExercice({count, word, navigation, type, sentence}){
         </View>)
     }
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> e555d67358c34d76c55d1456500859417023035d
-function Randomize({data, word, navigation, count, type}){
-    data = shuffle(data);
-    count = count +1;
-    var i =-1;
+function Show({data, word, navigation, count, type}){
+    var i = -1;
     return(
         data.map(function (item) {
             i++;
             return (
-<<<<<<< HEAD
-                    <AnswerButton key={i} name={item[1]} onPress={(item[1]== item)? (() => navigation.navigate('List', {type : type, count : count})) : (() => Alert.alert(
-                        'False',
-                        {cancelable: false},
-                    ))} />
+                <Text> {item[0]} : {item[1]}</ Text>
 
-=======
-                <AnswerButton key={i} name={item[1]} onPress={(word == item)? () => navigation.navigate('Translation', {type : type, count : count}) : () => Alert.alert('false')} />
->>>>>>> e555d67358c34d76c55d1456500859417023035d
             );}
         )
     )
@@ -129,18 +108,18 @@ function Rand(arr, n, word){
     return result;
 
 }
-CompareScreen.navigationOptions = {
-    title: "Excercices",
+WordsScreen.navigationOptions = {
+    title: "Learn",
 };
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f5f5dc',
+        backgroundColor: '#fff',
     },
     developmentModeText: {
         marginBottom: 20,
-        color : 'rgba(96,100,109, 1)',
+        color: 'rgba(0,0,0,0.4)',
         fontSize: 14,
         lineHeight: 19,
         textAlign: 'center',
@@ -166,7 +145,6 @@ const styles = StyleSheet.create({
     },
     homeScreenFilename: {
         marginVertical: 7,
-        textAlign : "center",
     },
     codeHighlightText: {
         color: 'rgba(96,100,109, 0.8)',
@@ -199,7 +177,7 @@ const styles = StyleSheet.create({
             },
         }),
         alignItems: 'center',
-        backgroundColor: '#4378fb',
+        backgroundColor: '#fbfbfb',
         paddingVertical: 20,
     },
     tabBarInfoText: {
