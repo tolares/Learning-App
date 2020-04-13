@@ -27,7 +27,7 @@ export default function HomeScreen({navigation, food}){
               image={require('../assets/images/icons/animals.png')}
               type={2}
               count={0}
-              url='List'
+              url='Translation'
               label='Animals'
               navigation={navigation}
               disable={false}
@@ -57,7 +57,7 @@ export default function HomeScreen({navigation, food}){
               url='Translation'
               label='Conversation'
               navigation={navigation}
-              disable={false}
+              disable={true}
           />
           <TypeButton
               image={require('../assets/images/icons/art.png')}

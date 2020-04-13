@@ -1,8 +1,7 @@
 import * as React from 'react';
-import {Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button} from 'react-native';
+import {Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button, Alert} from 'react-native';
 import AnswerButton from '../../components/AnswerButton';
 import {ScrollView} from "react-native-gesture-handler";
-import {Alert} from "react-native-web";
 import {LinearGradient} from 'expo-linear-gradient';
 import data from '../../assets/data/words.json';
 import ReturnButton from "../../components/ReturnButton";

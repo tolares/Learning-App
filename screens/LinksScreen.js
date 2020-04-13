@@ -3,27 +3,35 @@ import { StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import * as WebBrowser from 'expo-web-browser';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
+import HomeScreen from "./HomeScreen";
 
-export default function LinksScreen() {
+export default function LinksScreen({route, navigation}) {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
       <OptionButton
         icon="md-school"
-        label="Read the Expo documentation"
-        onPress={() => WebBrowser.openBrowserAsync('https://docs.expo.io')}
+        label="List of food words"
+        onPress={() => navigation.navigate("Words", {type: 1})}
       />
-
       <OptionButton
-        icon="md-compass"
-        label="Read the React Navigation documentation"
-        onPress={() => WebBrowser.openBrowserAsync('https://reactnavigation.org')}
+          icon="md-school"
+          label="List of animals words"
+          onPress={() => navigation.navigate("Words", {type: 2})}
       />
-
       <OptionButton
-        icon="ios-chatboxes"
-        label="Ask a question on the forums"
-        onPress={() => WebBrowser.openBrowserAsync('https://forums.expo.io')}
-        isLastOption
+          icon="md-school"
+          label="List of science words"
+          onPress={() => navigation.navigate("Words", {type: 4})}
+      />
+      <OptionButton
+          icon="md-school"
+          label="List of colors words"
+          onPress={() => navigation.navigate("Words", {type: 6})}
+      />
+      <OptionButton
+          icon="md-school"
+          label="List of economics words"
+          onPress={() => navigation.navigate("Words", {type: 7})}
       />
     </ScrollView>
   );
@@ -43,7 +51,9 @@ function OptionButton({ icon, label, onPress, isLastOption }) {
     </RectButton>
   );
 }
-
+LinksScreen.navigationOptions = {
+  header: null,
+};
 const styles = StyleSheet.create({
   container: {
     flex: 1,

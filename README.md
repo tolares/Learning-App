@@ -1,4 +1,3 @@
 # Learning-App
-A Learning App project under React native 
-
+A Learning App project under React native.
 
