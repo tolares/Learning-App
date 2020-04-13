@@ -4,7 +4,6 @@ import {
     Image,
     ImageBackground,
     Linking,
-    ListView,
     Platform,
     ScrollView,
     StyleSheet,
@@ -12,7 +11,7 @@ import {
     View,
 } from 'react-native'
 import PropTypes from 'prop-types'
-
+import ListView from "deprecated-react-native-listview"
 import mainColor from './constants'
 
 import Email from './Email'
